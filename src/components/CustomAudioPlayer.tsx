@@ -4,12 +4,15 @@ import AudioEngine from '../utils/AudioEngine';
 import AudioVisualizer from './AudioVisualizer';
 import { Play, Pause, Volume2, VolumeX, RotateCcw, HelpCircle, Laptop, Radio, Tag, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { parseInstagram } from '../lib/settingsService';
 
 interface CustomAudioPlayerProps {
   onOpenLicense?: (track: Track) => void;
+  instagramLink?: string;
 }
 
-export default function CustomAudioPlayer({ onOpenLicense }: CustomAudioPlayerProps) {
+export default function CustomAudioPlayer({ onOpenLicense, instagramLink }: CustomAudioPlayerProps) {
+  const igInfo = parseInstagram(instagramLink);
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
     currentTrack: null as Track | null,
@@ -57,7 +60,7 @@ export default function CustomAudioPlayer({ onOpenLicense }: CustomAudioPlayerPr
       
       // Redirect to Instagram DM after a short delay
       setTimeout(() => {
-        window.open('https://ig.me/m/craxxbeats.india', '_blank');
+        window.open(igInfo.dmUrl, '_blank');
       }, 1000);
     });
   };

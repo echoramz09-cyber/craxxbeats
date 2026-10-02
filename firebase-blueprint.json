@@ -88,6 +88,30 @@
         }
       },
       "required": ["id", "name"]
+    },
+    "setting": {
+      "title": "Site Settings",
+      "description": "Global application configuration including producer profile and Instagram social links",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Settings document ID, e.g. general"
+        },
+        "instagramLink": {
+          "type": "string",
+          "description": "Instagram handle, username, or profile link"
+        },
+        "instagramHandle": {
+          "type": "string",
+          "description": "Normalized Instagram username"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["id"]
     }
   },
   "firestore": {
@@ -98,6 +122,10 @@
     "genres": {
       "schema": "genre",
       "description": "Collection of available genres for the catalog"
+    },
+    "settings": {
+      "schema": "setting",
+      "description": "Collection storing application settings such as Instagram contact information"
     }
   }
 }

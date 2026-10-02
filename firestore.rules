@@ -33,6 +33,10 @@ service cloud.firestore {
              data.id is string && data.name is string;
     }
 
+    function isValidSetting(data) {
+      return data.keys().hasAll(['id']) && data.id is string;
+    }
+
     // Beats catalog: Anyone can view and edit (Auth-less mode)
     match /beats/{beatId} {
       allow read: if true;
@@ -44,6 +48,13 @@ service cloud.firestore {
     match /genres/{genreId} {
       allow read: if true;
       allow create, update: if isValidId(genreId) && isValidGenre(incoming());
+      allow delete: if true;
+    }
+
+    // Settings collection: Anyone can view and update
+    match /settings/{settingId} {
+      allow read: if true;
+      allow create, update: if isValidId(settingId) && isValidSetting(incoming());
       allow delete: if true;
     }
   }

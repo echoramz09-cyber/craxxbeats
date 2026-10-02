@@ -2,20 +2,24 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Check, FileAudio, Layers, Sparkles, Crown, Instagram, Copy, ExternalLink, Music } from 'lucide-react';
 import { Track } from '../types';
+import { parseInstagram } from '../lib/settingsService';
 
 interface LicenseModalProps {
   track: Track | null;
   isOpen: boolean;
   onClose: () => void;
+  instagramLink?: string;
 }
 
-export default function LicenseModal({ track, isOpen, onClose }: LicenseModalProps) {
+export default function LicenseModal({ track, isOpen, onClose, instagramLink }: LicenseModalProps) {
   const [selectedTierForConfirm, setSelectedTierForConfirm] = useState<{
     name: string;
     price: number;
     text: string;
   } | null>(null);
   const [hasCopied, setHasCopied] = useState(false);
+
+  const igInfo = parseInstagram(instagramLink);
 
   if (!isOpen || !track) return null;
 
@@ -110,7 +114,7 @@ export default function LicenseModal({ track, isOpen, onClose }: LicenseModalPro
     if (selectedTierForConfirm) {
       navigator.clipboard.writeText(selectedTierForConfirm.text).catch(() => {});
     }
-    window.open('https://ig.me/m/craxxbeats.india', '_blank');
+    window.open(igInfo.dmUrl, '_blank');
     setSelectedTierForConfirm(null);
   };
 
@@ -267,13 +271,13 @@ export default function LicenseModal({ track, isOpen, onClose }: LicenseModalPro
           </div>
 
           <a 
-            href="https://ig.me/m/craxxbeats.india" 
+            href={igInfo.dmUrl} 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-amber-400 font-mono text-[11px] font-bold transition-colors"
           >
             <Instagram className="w-3 h-3" />
-            <span>@craxxbeats.india</span>
+            <span>{igInfo.displayHandle}</span>
             <ExternalLink className="w-3 h-3 text-zinc-500" />
           </a>
         </div>
@@ -333,7 +337,7 @@ export default function LicenseModal({ track, isOpen, onClose }: LicenseModalPro
                   </div>
 
                   <p className="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
-                    Instagram will open when you click <strong className="text-amber-400">OK</strong>. Check your clipboard and simply <strong className="text-white">paste (Ctrl+V / Paste)</strong> the message into the chat with <strong className="text-amber-400 font-mono">@craxxbeats.india</strong>.
+                    Instagram will open when you click <strong className="text-amber-400">OK</strong>. Check your clipboard and simply <strong className="text-white">paste (Ctrl+V / Paste)</strong> the message into the chat with <strong className="text-amber-400 font-mono">{igInfo.displayHandle}</strong>.
                   </p>
 
                   {/* Message Preview Box */}

@@ -1,13 +1,16 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { Mail, Instagram, Youtube, Radio, Check, Send, Heart, Sparkles, Shield } from 'lucide-react';
 import { PRODUCER_PROFILE } from '../data';
+import { parseInstagram } from '../lib/settingsService';
 import { motion } from 'motion/react';
 
 interface FooterProps {
   onAdminClick?: () => void;
+  instagramLink?: string;
 }
 
-export default function Footer({ onAdminClick }: FooterProps) {
+export default function Footer({ onAdminClick, instagramLink }: FooterProps) {
+  const igInfo = parseInstagram(instagramLink);
   const [formData, setFormData] = useState({ name: '', email: '', subject: 'Custom Beat Inquiry', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -37,13 +40,13 @@ export default function Footer({ onAdminClick }: FooterProps) {
 
         <div className="flex items-center gap-4">
           <a 
-            href="https://instagram.com/craxxbeats.india" 
+            href={igInfo.profileUrl} 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 hover:text-amber-400 text-zinc-400 transition-colors"
           >
             <Instagram className="w-3.5 h-3.5 text-amber-400" />
-            <span>@craxxbeats.india</span>
+            <span>{igInfo.displayHandle}</span>
           </a>
 
           {onAdminClick && (

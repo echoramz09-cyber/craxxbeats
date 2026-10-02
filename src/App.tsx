@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Track } from './types';
 import { fetchBeats, incrementBeatPlay } from './lib/beatService';
 import { fetchGenres, Genre } from './lib/genreService';
+import { fetchSettings, DEFAULT_INSTAGRAM } from './lib/settingsService';
 import AudioEngine from './utils/AudioEngine';
 import { motion, AnimatePresence } from 'motion/react';
 import { Shield, Sparkles } from 'lucide-react';
@@ -45,21 +46,37 @@ export default function App() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isLoadingTracks, setIsLoadingTracks] = useState(true);
   const [selectedLicenseTrack, setSelectedLicenseTrack] = useState<Track | null>(null);
+  const [instagramLink, setInstagramLink] = useState(DEFAULT_INSTAGRAM);
 
   // Load catalog data from Firestore
   const loadCatalogData = async () => {
     setIsLoadingTracks(true);
     try {
-      const [liveTracks, liveGenres] = await Promise.all([
+      const [liveTracks, liveGenres, liveSettings] = await Promise.all([
         fetchBeats(),
-        fetchGenres()
+        fetchGenres(),
+        fetchSettings()
       ]);
       setTracks(liveTracks);
       setGenres(liveGenres);
+      if (liveSettings?.instagramLink) {
+        setInstagramLink(liveSettings.instagramLink);
+      }
     } catch (e) {
       console.error("Failed to sync catalog:", e);
     } finally {
       setIsLoadingTracks(false);
+    }
+  };
+
+  const handleSettingsRefresh = async () => {
+    try {
+      const updated = await fetchSettings();
+      if (updated?.instagramLink) {
+        setInstagramLink(updated.instagramLink);
+      }
+    } catch (e) {
+      console.error("Failed to refresh settings:", e);
     }
   };
 
@@ -263,6 +280,7 @@ export default function App() {
        <div className="relative z-10 w-full">
          <Footer 
            onAdminClick={() => setIsAdminOpen(true)}
+           instagramLink={instagramLink}
          />
        </div>
  
@@ -271,11 +289,13 @@ export default function App() {
          isOpen={isAdminOpen} 
          onClose={() => setIsAdminOpen(false)} 
          onCatalogRefresh={loadCatalogData} 
+         onSettingsRefresh={handleSettingsRefresh}
        />
 
       {/* Sticky Player HUD */}
       <CustomAudioPlayer 
         onOpenLicense={(track) => setSelectedLicenseTrack(track)}
+        instagramLink={instagramLink}
       />
 
       {/* Licensing Tiers Popup Modal (MP3, WAV, WAV+Stems, Exclusive in ₹) */}
@@ -283,6 +303,7 @@ export default function App() {
         track={selectedLicenseTrack}
         isOpen={!!selectedLicenseTrack}
         onClose={() => setSelectedLicenseTrack(null)}
+        instagramLink={instagramLink}
       />
 
     </div>
