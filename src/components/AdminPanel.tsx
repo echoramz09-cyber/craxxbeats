@@ -455,22 +455,23 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
-        className="relative bg-zinc-900 border border-zinc-800/80 w-full max-w-5xl lg:max-w-6xl max-h-[92vh] h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden text-white font-sans z-10"
+        className="relative bg-zinc-900 border border-zinc-800/80 w-full max-w-5xl lg:max-w-6xl xl:max-w-7xl max-h-[96vh] h-[94vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden text-white font-sans z-10"
       >
         {/* Title Header */}
-        <div className="flex items-center justify-between border-b border-zinc-800 px-6 py-4 bg-zinc-950/40">
-          <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-purple-500/10 text-purple-400">
+        <div className="flex items-center justify-between border-b border-zinc-800 px-5 sm:px-6 py-3.5 bg-zinc-950/60 flex-shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 rounded-xl bg-purple-500/10 text-purple-400">
               <Shield className="w-5 h-5 animate-pulse" />
             </div>
             <div>
-              <h2 className="text-sm font-sans tracking-wider uppercase font-black text-zinc-100">Producer Command Console</h2>
+              <h2 className="text-xs sm:text-sm font-sans tracking-wider uppercase font-black text-zinc-100">Producer Command Console</h2>
               <p className="text-[10px] text-zinc-500 font-sans font-bold uppercase tracking-wider">Live database synchronization powered by Cloud Firestore</p>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="p-1 rounded-lg text-zinc-500 hover:text-white bg-zinc-850 hover:bg-zinc-800 transition-colors"
+            className="p-1.5 rounded-xl text-zinc-500 hover:text-white bg-zinc-850 hover:bg-zinc-800 transition-colors cursor-pointer"
+            aria-label="Close command console"
           >
             <X className="w-4 h-4" />
           </button>
@@ -533,15 +534,15 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
           </div>
         ) : (
           /* Logged In Dashboard Screen */
-          <div className="flex-grow flex flex-col md:flex-row overflow-hidden bg-zinc-900">
+          <div className="flex-grow flex flex-col md:flex-row overflow-hidden bg-zinc-900 min-h-0">
             {/* Sidebar Controls */}
-            <div className="w-full md:w-52 border-b md:border-b-0 md:border-r border-zinc-850 px-4 py-5 flex flex-col justify-between gap-4 flex-shrink-0 bg-zinc-950/20">
-              <div className="space-y-1">
-                <div className="text-[9px] font-sans font-bold text-zinc-500 uppercase tracking-widest px-2 mb-2">Controls</div>
+            <div className="w-full md:w-56 border-b md:border-b-0 md:border-r border-zinc-850 px-3 md:px-4 py-2.5 md:py-5 flex flex-row md:flex-col justify-between items-center md:items-stretch gap-2 md:gap-4 flex-shrink-0 bg-zinc-950/40 overflow-x-auto md:overflow-visible">
+              <div className="flex flex-row md:flex-col gap-1.5 overflow-x-auto md:overflow-visible flex-grow md:flex-grow-0 no-scrollbar">
+                <div className="hidden md:block text-[9px] font-sans font-bold text-zinc-500 uppercase tracking-widest px-2 mb-2">Controls</div>
                 
                 <button
                   onClick={() => setActiveFormTab('list')}
-                  className={`w-full text-left px-3 py-2 rounded-xl text-[10px] font-sans font-bold uppercase tracking-wider transition-colors flex items-center gap-2 ${
+                  className={`px-3 py-2 rounded-xl text-[10px] font-sans font-bold uppercase tracking-wider transition-colors flex items-center gap-2 flex-shrink-0 whitespace-nowrap cursor-pointer ${
                     activeFormTab === 'list' 
                       ? 'bg-amber-400 text-black shadow-md shadow-amber-500/20 font-black' 
                       : 'text-zinc-400 hover:text-white hover:bg-zinc-850/40'
@@ -553,7 +554,7 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
 
                 <button
                   onClick={handleAddClick}
-                  className={`w-full text-left px-3 py-2 rounded-xl text-[10px] font-sans font-bold uppercase tracking-wider transition-colors flex items-center gap-2 ${
+                  className={`px-3 py-2 rounded-xl text-[10px] font-sans font-bold uppercase tracking-wider transition-colors flex items-center gap-2 flex-shrink-0 whitespace-nowrap cursor-pointer ${
                     activeFormTab === 'add' 
                       ? 'bg-amber-400 text-black shadow-md shadow-amber-500/20 font-black' 
                       : 'text-zinc-400 hover:text-white hover:bg-zinc-850/40'
@@ -565,7 +566,7 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
 
                 <button
                   onClick={() => setActiveFormTab('genres')}
-                  className={`w-full text-left px-3 py-2 rounded-xl text-[10px] font-sans font-bold uppercase tracking-wider transition-colors flex items-center gap-2 ${
+                  className={`px-3 py-2 rounded-xl text-[10px] font-sans font-bold uppercase tracking-wider transition-colors flex items-center gap-2 flex-shrink-0 whitespace-nowrap cursor-pointer ${
                     activeFormTab === 'genres' 
                       ? 'bg-amber-400 text-black shadow-md shadow-amber-500/20 font-black' 
                       : 'text-zinc-400 hover:text-white hover:bg-zinc-850/40'
@@ -580,7 +581,7 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
                     loadInstagramSettings();
                     setActiveFormTab('instagram');
                   }}
-                  className={`w-full text-left px-3 py-2 rounded-xl text-[10px] font-sans font-bold uppercase tracking-wider transition-colors flex items-center gap-2 ${
+                  className={`px-3 py-2 rounded-xl text-[10px] font-sans font-bold uppercase tracking-wider transition-colors flex items-center gap-2 flex-shrink-0 whitespace-nowrap cursor-pointer ${
                     activeFormTab === 'instagram' 
                       ? 'bg-amber-400 text-black shadow-md shadow-amber-500/20 font-black' 
                       : 'text-zinc-400 hover:text-white hover:bg-zinc-850/40'
@@ -591,25 +592,25 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
                 </button>
               </div>
 
-              <div>
-                <div className="border-t border-zinc-850 pt-4 px-2 pb-2">
-                  <div className="text-[9px] truncate text-emerald-400 font-mono flex items-center gap-1.5 mb-2">
+              <div className="flex-shrink-0">
+                <div className="border-t-0 md:border-t border-zinc-850 pt-0 md:pt-4 px-2 pb-0 md:pb-2 flex md:flex-col items-center md:items-start gap-2">
+                  <div className="hidden md:flex text-[9px] truncate text-emerald-400 font-mono items-center gap-1.5 mb-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span>Admin Session</span>
                   </div>
                   <button 
                     onClick={handleLogout}
-                    className="w-full text-left font-mono text-[10px] text-zinc-500 hover:text-rose-400 flex items-center gap-1.5 transition-colors"
+                    className="font-mono text-[10px] text-zinc-500 hover:text-rose-400 flex items-center gap-1.5 transition-colors cursor-pointer px-2 py-1 rounded-lg hover:bg-zinc-800"
                   >
                     <LogOut className="w-3.5 h-3.5" />
-                    <span>Exit Command</span>
+                    <span>Exit</span>
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Main Section panel */}
-            <div className="flex-grow flex flex-col min-h-0">
+            <div className="flex-grow flex flex-col min-h-0 overflow-hidden">
               
               {/* Beats List */}
               {activeFormTab === 'list' && (
@@ -982,127 +983,184 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
 
               {/* Add & Edit Form */}
               {(activeFormTab === 'add' || activeFormTab === 'edit') && (
-                <form onSubmit={handleFormSubmit} className="flex-grow flex flex-col overflow-hidden">
-                  <div className="px-6 pt-6 pb-2">
-                    <div className="flex items-center justify-between border-b border-zinc-850 pb-2">
-                      <h4 className="text-sm font-mono uppercase tracking-wider text-purple-400 font-extrabold">
-                        {activeFormTab === 'edit' ? 'Edit Instrumental parameters' : 'Design new instrumental'}
-                      </h4>
-                      <button 
-                        type="button" 
-                        onClick={() => setActiveFormTab('list')}
-                        className="text-[10px] font-mono text-zinc-500 hover:text-white"
-                      >
-                        ← Cancel
-                      </button>
+                <form onSubmit={handleFormSubmit} className="flex-grow flex flex-col min-h-0 overflow-hidden">
+                  {/* Form Header */}
+                  <div className="px-6 sm:px-8 py-3.5 border-b border-zinc-800 flex-shrink-0 bg-zinc-950/60 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-2 rounded-xl bg-amber-400/10 text-amber-400 border border-amber-400/20">
+                        <Music className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h4 className="text-sm sm:text-base font-bold tracking-tight text-white">
+                          {activeFormTab === 'edit' ? 'Edit Instrumental Parameters' : 'Add New Beat Details'}
+                        </h4>
+                        <p className="text-[10px] text-zinc-400 font-sans">
+                          Scroll down through all track details, audio/artwork files, and license pricing.
+                        </p>
+                      </div>
                     </div>
+                    <button 
+                      type="button" 
+                      onClick={() => setActiveFormTab('list')}
+                      className="px-3 py-1.5 rounded-xl text-xs font-sans text-zinc-400 hover:text-white bg-zinc-800 hover:bg-zinc-700 transition-colors cursor-pointer"
+                    >
+                      ← Back to Catalog
+                    </button>
                   </div>
 
-                  <div className="flex-grow overflow-y-auto px-6 py-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {/* Beat Name */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1 leading-none">Beat Name/Title</label>
-                        <input 
-                          type="text" 
-                          value={formData.title}
-                          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                          placeholder="e.g., Midnight Stars"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 font-mono"
-                          required
-                        />
+                  {/* Long & Scrollable Form Body */}
+                  <div className="flex-grow min-h-0 overflow-y-auto px-6 sm:px-8 py-6 space-y-6 custom-scrollbar scroll-smooth">
+                    
+                    {/* Section 1: Track Identity */}
+                    <div className="bg-zinc-950/70 border border-zinc-800/90 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm">
+                      <div className="border-b border-zinc-850 pb-2.5 flex items-center justify-between">
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+                          1. Track Identity
+                        </span>
+                        <span className="text-[10px] font-sans text-zinc-500">Core Title & Description</span>
                       </div>
 
-                      {/* Tagline */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1 leading-none">Short Tagline/Vibe</label>
-                        <input 
-                          type="text" 
-                          value={formData.tagline}
-                          onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
-                          placeholder="e.g., Mellow lo-pass filtered trap backing"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 font-mono"
-                        />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* Beat Name */}
+                        <div>
+                          <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                            Beat Title / Name <span className="text-amber-400">*</span>
+                          </label>
+                          <input 
+                            type="text" 
+                            value={formData.title}
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                            placeholder="e.g., Midnight Stars"
+                            className="w-full bg-zinc-900 border border-zinc-800 focus:border-amber-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none font-mono text-zinc-100 transition-all placeholder-zinc-650"
+                            required
+                          />
+                        </div>
+
+                        {/* Tagline */}
+                        <div>
+                          <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                            Short Tagline / Vibe
+                          </label>
+                          <input 
+                            type="text" 
+                            value={formData.tagline}
+                            onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
+                            placeholder="e.g., Mellow lo-pass filtered trap backing"
+                            className="w-full bg-zinc-900 border border-zinc-800 focus:border-amber-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none font-mono text-zinc-100 transition-all placeholder-zinc-650"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Section 2: Musical Parameters */}
+                    <div className="bg-zinc-950/70 border border-zinc-800/90 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm">
+                      <div className="border-b border-zinc-850 pb-2.5 flex items-center justify-between">
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+                          2. Musical Specs & Attributes
+                        </span>
+                        <span className="text-[10px] font-sans text-zinc-500">Tempo, Scale, Genre & Duration</span>
                       </div>
 
-                      {/* BPM */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1 leading-none">BPM</label>
-                        <input 
-                          type="number" 
-                          value={formData.bpm}
-                          onChange={(e) => setFormData({ ...formData, bpm: Number(e.target.value) })}
-                          placeholder="140"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 font-mono"
-                          required
-                        />
-                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        {/* BPM */}
+                        <div>
+                          <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                            BPM <span className="text-amber-400">*</span>
+                          </label>
+                          <input 
+                            type="number" 
+                            value={formData.bpm}
+                            onChange={(e) => setFormData({ ...formData, bpm: Number(e.target.value) })}
+                            placeholder="140"
+                            className="w-full bg-zinc-900 border border-zinc-800 focus:border-amber-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none font-mono text-zinc-100 transition-all"
+                            required
+                          />
+                        </div>
 
-                      {/* Musical Key */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1 leading-none">Scale Key</label>
-                        <input 
-                          type="text" 
-                          value={formData.key}
-                          onChange={(e) => setFormData({ ...formData, key: e.target.value })}
-                          placeholder="e.g., F Minor"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 font-mono"
-                        />
-                      </div>
+                        {/* Musical Key */}
+                        <div>
+                          <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                            Musical Key
+                          </label>
+                          <input 
+                            type="text" 
+                            value={formData.key}
+                            onChange={(e) => setFormData({ ...formData, key: e.target.value })}
+                            placeholder="e.g., F Minor"
+                            className="w-full bg-zinc-900 border border-zinc-800 focus:border-amber-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none font-mono text-zinc-100 transition-all"
+                          />
+                        </div>
 
-                      {/* Genre selection */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1 leading-none">Genre Classification</label>
-                        <select 
-                          value={formData.genre}
-                          onChange={(e) => setFormData({ ...formData, genre: e.target.value })}
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 font-mono text-zinc-300"
-                        >
-                          {genres.length > 0 ? (
-                            genres.map(g => (
-                              <option key={g.id} value={g.name}>{g.name}</option>
-                            ))
-                          ) : (
-                            <option value="Trap">Trap</option>
-                          )}
-                        </select>
-                      </div>
+                        {/* Genre selection */}
+                        <div>
+                          <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                            Genre Classification
+                          </label>
+                          <select 
+                            value={formData.genre}
+                            onChange={(e) => setFormData({ ...formData, genre: e.target.value })}
+                            className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-400 font-mono text-zinc-100"
+                          >
+                            {genres.length > 0 ? (
+                              genres.map(g => (
+                                <option key={g.id} value={g.name}>{g.name}</option>
+                              ))
+                            ) : (
+                              <option value="Trap">Trap</option>
+                            )}
+                          </select>
+                        </div>
 
-                      {/* Mood Selection */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1 leading-none">Primary Mood</label>
-                        <select 
-                          value={formData.mood}
-                          onChange={(e) => setFormData({ ...formData, mood: e.target.value as Track['mood'] })}
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 font-mono text-zinc-300"
-                        >
-                          <option value="Dark">Dark</option>
-                          <option value="Chill">Chill</option>
-                          <option value="Energetic">Energetic</option>
-                          <option value="Inspiring">Inspiring</option>
-                          <option value="Hypnotic">Hypnotic</option>
-                          <option value="Happy">Happy</option>
-                          <option value="Sad">Sad</option>
-                          <option value="Intense">Intense</option>
-                        </select>
-                      </div>
+                        {/* Mood Selection */}
+                        <div>
+                          <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                            Primary Mood
+                          </label>
+                          <select 
+                            value={formData.mood}
+                            onChange={(e) => setFormData({ ...formData, mood: e.target.value as Track['mood'] })}
+                            className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-400 font-mono text-zinc-100"
+                          >
+                            <option value="Dark">Dark</option>
+                            <option value="Chill">Chill</option>
+                            <option value="Energetic">Energetic</option>
+                            <option value="Inspiring">Inspiring</option>
+                            <option value="Hypnotic">Hypnotic</option>
+                            <option value="Happy">Happy</option>
+                            <option value="Sad">Sad</option>
+                            <option value="Intense">Intense</option>
+                          </select>
+                        </div>
 
-                      {/* Duration */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1 leading-none">Time Duration (MM:SS)</label>
-                        <input 
-                          type="text" 
-                          value={formData.duration}
-                          onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                          placeholder="3:45"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 font-mono"
-                          required
-                        />
+                        {/* Duration */}
+                        <div>
+                          <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                            Duration (MM:SS) <span className="text-amber-400">*</span>
+                          </label>
+                          <input 
+                            type="text" 
+                            value={formData.duration}
+                            onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                            placeholder="3:45"
+                            className="w-full bg-zinc-900 border border-zinc-800 focus:border-amber-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none font-mono text-zinc-100 transition-all"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Section 3: Media & Files */}
+                    <div className="bg-zinc-950/70 border border-zinc-800/90 rounded-2xl p-5 sm:p-6 space-y-5 shadow-sm">
+                      <div className="border-b border-zinc-850 pb-2.5 flex items-center justify-between">
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+                          3. Media & Audio Files
+                        </span>
+                        <span className="text-[10px] font-sans text-zinc-500">Artwork & Audio Stream</span>
                       </div>
 
                       {/* Artwork Direct Upload & Preview */}
-                      <div className="md:col-span-2 space-y-2">
-                        <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest leading-none">
+                      <div className="space-y-3">
+                        <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider">
                           Track Cover Artwork
                         </label>
                         
@@ -1128,9 +1186,9 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
                                 }).catch(err => alert(err.message));
                               }
                             }}
-                            className="sm:col-span-3 border-2 border-dashed border-zinc-800 hover:border-amber-400 bg-zinc-950/60 hover:bg-zinc-900/60 p-4 rounded-2xl flex items-center justify-center gap-3 cursor-pointer transition-all group"
+                            className="sm:col-span-3 border-2 border-dashed border-zinc-800 hover:border-amber-400 bg-zinc-900/60 hover:bg-zinc-900 p-4 sm:p-5 rounded-2xl flex items-center justify-center gap-3.5 cursor-pointer transition-all group"
                           >
-                            <div className="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="w-11 h-11 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                               {isUploadingImage ? (
                                 <span className="w-5 h-5 border-2 border-t-transparent border-amber-400 rounded-full animate-spin" />
                               ) : (
@@ -1138,28 +1196,28 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
                               )}
                             </div>
                             <div className="text-left">
-                              <p className="text-xs font-sans font-bold text-zinc-200 group-hover:text-amber-400 transition-colors">
-                                Click or drag & drop image here
+                              <p className="text-xs sm:text-sm font-sans font-bold text-zinc-200 group-hover:text-amber-400 transition-colors">
+                                Click or drag & drop artwork image here
                               </p>
-                              <p className="text-[9px] font-mono text-zinc-500">
-                                Supports PNG, JPG, WEBP. Saved directly to database.
+                              <p className="text-[10px] font-mono text-zinc-500">
+                                Supports PNG, JPG, WEBP. Compressed and stored directly.
                               </p>
                             </div>
                           </div>
 
                           {/* Preview Thumbnail */}
-                          <div className="sm:col-span-1 flex flex-col items-center justify-center border border-zinc-850 bg-zinc-950 p-2 rounded-2xl h-full min-h-[70px]">
+                          <div className="sm:col-span-1 flex flex-col items-center justify-center border border-zinc-800 bg-zinc-900 p-2.5 rounded-2xl h-full min-h-[80px]">
                             {formData.artwork ? (
                               <div className="relative group w-full h-full flex items-center justify-center">
                                 <img 
                                   src={formData.artwork} 
                                   alt="Artwork preview" 
-                                  className="w-12 h-12 rounded-xl object-cover border border-amber-400/50 shadow-md" 
+                                  className="w-16 h-16 rounded-xl object-cover border border-amber-400/50 shadow-md" 
                                 />
                                 <button 
                                   type="button"
                                   onClick={(e) => { e.stopPropagation(); setFormData({ ...formData, artwork: '' }); }}
-                                  className="absolute -top-1 -right-1 bg-rose-500 text-white p-0.5 rounded-full text-[8px] opacity-0 group-hover:opacity-100 transition-opacity"
+                                  className="absolute -top-1 -right-1 bg-rose-500 text-white p-1 rounded-full text-[9px] opacity-90 hover:opacity-100 transition-opacity cursor-pointer shadow-md"
                                   title="Remove artwork"
                                 >
                                   <X className="w-3 h-3" />
@@ -1168,31 +1226,29 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
                             ) : (
                               <div className="text-center text-zinc-600">
                                 <ImageIcon className="w-6 h-6 mx-auto mb-1 opacity-40" />
-                                <span className="text-[8px] font-mono">No Cover</span>
+                                <span className="text-[9px] font-mono">No Cover Loaded</span>
                               </div>
                             )}
                           </div>
                         </div>
 
                         {/* Optional URL input fallback */}
-                        <div className="pt-1">
+                        <div>
                           <input 
                             type="text" 
                             value={formData.artwork}
                             onChange={(e) => setFormData({ ...formData, artwork: e.target.value })}
                             placeholder="Or paste direct image URL (https://...)"
-                            className="w-full bg-zinc-950/40 border border-zinc-850/60 rounded-xl px-3 py-1.5 text-[10px] focus:outline-none focus:border-amber-400 font-mono text-zinc-400"
+                            className="w-full bg-zinc-900 border border-zinc-800 focus:border-amber-400 rounded-xl px-4 py-2 text-xs font-mono text-zinc-300 focus:outline-none transition-all placeholder-zinc-650"
                           />
                         </div>
                       </div>
 
                       {/* Beat Audio Direct Upload & URL */}
-                      <div className="md:col-span-2 space-y-2">
-                        <div className="flex items-center justify-between">
-                          <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest leading-none">
-                            Instrumental Audio Track
-                          </label>
-                        </div>
+                      <div className="space-y-3 pt-2 border-t border-zinc-850">
+                        <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider">
+                          Instrumental Audio Track (Audio Stream) <span className="text-amber-400">*</span>
+                        </label>
 
                         <input 
                           type="file" 
@@ -1206,22 +1262,22 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
                           <button
                             type="button"
                             onClick={() => audioInputRef.current?.click()}
-                            className="flex-1 border border-zinc-800 hover:border-amber-400 bg-zinc-950 hover:bg-zinc-900/60 px-4 py-3 rounded-2xl flex items-center justify-center gap-2 text-xs font-sans font-bold text-zinc-200 hover:text-amber-400 transition-all cursor-pointer"
+                            className="flex-1 border border-zinc-800 hover:border-amber-400 bg-zinc-900 hover:bg-zinc-850 px-4 py-3 rounded-2xl flex items-center justify-center gap-2.5 text-xs font-sans font-bold text-zinc-200 hover:text-amber-400 transition-all cursor-pointer shadow-sm"
                           >
                             {isUploadingAudio ? (
                               <>
                                 <span className="w-4 h-4 border-2 border-t-transparent border-amber-400 rounded-full animate-spin" />
-                                <span className="font-mono text-[10px]">Uploading audio data...</span>
+                                <span className="font-mono text-xs">Uploading audio data...</span>
                               </>
                             ) : formData.beatUrl ? (
                               <>
                                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                                <span className="text-emerald-400 font-mono text-[10px] truncate max-w-[200px]">Audio loaded & ready</span>
+                                <span className="text-emerald-400 font-mono text-xs truncate max-w-[280px]">Audio track loaded & ready</span>
                               </>
                             ) : (
                               <>
                                 <FileAudio className="w-4 h-4 text-amber-400" />
-                                <span>Upload Audio File (MP3 / WAV)</span>
+                                <span>Upload Audio File (MP3 / WAV / OGG)</span>
                               </>
                             )}
                           </button>
@@ -1231,108 +1287,197 @@ export default function AdminPanel({ onCatalogRefresh, isOpen, onClose, onSettin
                           type="text" 
                           value={formData.beatUrl}
                           onChange={(e) => setFormData({ ...formData, beatUrl: e.target.value })}
-                          placeholder="Or paste audio URL (https://files.catbox.moe/...)"
-                          className="w-full bg-zinc-950/40 border border-zinc-850/60 rounded-xl px-3 py-1.5 text-[10px] focus:outline-none focus:border-amber-400 font-mono text-amber-200"
+                          placeholder="Or paste audio URL (https://actions.google.com/sounds/v1/music/...)"
+                          className="w-full bg-zinc-900 border border-zinc-800 focus:border-amber-400 rounded-xl px-4 py-2 text-xs font-mono text-amber-200 focus:outline-none transition-all placeholder-zinc-650"
                           required
                         />
                       </div>
+                    </div>
 
-                      {/* Semicolon separated tags */}
-                      <div className="md:col-span-2">
-                        <label className="block text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1 leading-none">Tags / Styles (Separate by Semicolon)</label>
+                    {/* Section 4: Tags & Keywords */}
+                    <div className="bg-zinc-950/70 border border-zinc-800/90 rounded-2xl p-5 sm:p-6 space-y-3 shadow-sm">
+                      <div className="border-b border-zinc-850 pb-2.5 flex items-center justify-between">
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+                          4. Search Tags & Style Keywords
+                        </span>
+                        <span className="text-[10px] font-sans text-zinc-500">Store Search Filters</span>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                          Tags / Styles (Separate by Semicolon)
+                        </label>
                         <input 
                           type="text" 
                           value={formData.tagsString}
                           onChange={(e) => setFormData({ ...formData, tagsString: e.target.value })}
-                          placeholder="Chill; Relaxed; Melancholic"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 font-mono"
+                          placeholder="Chill; Relaxed; Melancholic; 808"
+                          className="w-full bg-zinc-900 border border-zinc-800 focus:border-amber-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none font-mono text-zinc-100 transition-all placeholder-zinc-650"
                         />
+                        <p className="text-[10px] text-zinc-500 font-sans mt-1.5">
+                          Buyers can search beats using these tags in the catalog search bar.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Section 5: All 4 License Tier Prices (in Rupees ₹) */}
+                    <div className="bg-zinc-950/70 border border-zinc-800/90 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm">
+                      <div className="border-b border-zinc-850 pb-2.5 flex items-center justify-between">
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+                          5. Licensing Tiers & Pricing (in Rupees ₹)
+                        </span>
+                        <span className="text-[10px] font-sans text-amber-400 font-mono font-bold">Currency: INR (₹)</span>
                       </div>
 
-                      {/* MP3 License Price */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-amber-400 uppercase tracking-widest mb-1 leading-none">MP3 License (₹)</label>
-                        <input 
-                          type="number" 
-                          value={formData.priceBasic}
-                          onChange={(e) => setFormData({ ...formData, priceBasic: Number(e.target.value) })}
-                          placeholder="999"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-400 font-mono text-zinc-100"
-                          required
-                        />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {/* MP3 License Price */}
+                        <div className="bg-zinc-900/90 border border-zinc-800 p-3.5 rounded-xl space-y-1.5">
+                          <div className="flex items-center justify-between">
+                            <label className="text-xs font-sans font-bold text-amber-400 uppercase tracking-wider">
+                              MP3 License (₹)
+                            </label>
+                            <span className="text-[9px] font-mono text-zinc-500">Basic</span>
+                          </div>
+                          <div className="relative">
+                            <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-amber-400 font-mono font-bold">
+                              ₹
+                            </span>
+                            <input 
+                              type="number" 
+                              value={formData.priceBasic}
+                              onChange={(e) => setFormData({ ...formData, priceBasic: Number(e.target.value) })}
+                              placeholder="999"
+                              className="w-full bg-zinc-950 border border-zinc-800 focus:border-amber-400 rounded-xl pl-8 pr-3 py-2 text-sm focus:outline-none font-mono text-zinc-100 font-bold"
+                              required
+                            />
+                          </div>
+                          <p className="text-[10px] text-zinc-500 font-sans">Starting store price</p>
+                        </div>
+
+                        {/* WAV License Price */}
+                        <div className="bg-zinc-900/90 border border-zinc-800 p-3.5 rounded-xl space-y-1.5">
+                          <div className="flex items-center justify-between">
+                            <label className="text-xs font-sans font-bold text-amber-400 uppercase tracking-wider">
+                              WAV License (₹)
+                            </label>
+                            <span className="text-[9px] font-mono text-zinc-500">Lossless</span>
+                          </div>
+                          <div className="relative">
+                            <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-amber-400 font-mono font-bold">
+                              ₹
+                            </span>
+                            <input 
+                              type="number" 
+                              value={formData.pricePremium}
+                              onChange={(e) => setFormData({ ...formData, pricePremium: Number(e.target.value) })}
+                              placeholder="1999"
+                              className="w-full bg-zinc-950 border border-zinc-850 rounded-xl pl-8 pr-3 py-2 text-sm focus:outline-none font-mono text-zinc-100 font-bold"
+                              required
+                            />
+                          </div>
+                          <p className="text-[10px] text-zinc-500 font-sans">Master 24-bit WAV</p>
+                        </div>
+
+                        {/* WAV + Stems License Price */}
+                        <div className="bg-zinc-900/90 border border-zinc-800 p-3.5 rounded-xl space-y-1.5">
+                          <div className="flex items-center justify-between">
+                            <label className="text-xs font-sans font-bold text-purple-400 uppercase tracking-wider">
+                              WAV + Stems (₹)
+                            </label>
+                            <span className="text-[9px] font-mono text-zinc-500">Trackouts</span>
+                          </div>
+                          <div className="relative">
+                            <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-purple-400 font-mono font-bold">
+                              ₹
+                            </span>
+                            <input 
+                              type="number" 
+                              value={formData.priceUnlimited}
+                              onChange={(e) => setFormData({ ...formData, priceUnlimited: Number(e.target.value) })}
+                              placeholder="3999"
+                              className="w-full bg-zinc-950 border border-zinc-800 focus:border-purple-400 rounded-xl pl-8 pr-3 py-2 text-sm focus:outline-none font-mono text-zinc-100 font-bold"
+                              required
+                            />
+                          </div>
+                          <p className="text-[10px] text-zinc-500 font-sans">Full stem trackouts</p>
+                        </div>
+
+                        {/* Exclusive License Price */}
+                        <div className="bg-zinc-900/90 border border-zinc-800 p-3.5 rounded-xl space-y-1.5">
+                          <div className="flex items-center justify-between">
+                            <label className="text-xs font-sans font-bold text-yellow-400 uppercase tracking-wider">
+                              Exclusive (₹)
+                            </label>
+                            <span className="text-[9px] font-mono text-yellow-400">Ownership</span>
+                          </div>
+                          <div className="relative">
+                            <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-yellow-400 font-mono font-bold">
+                              ₹
+                            </span>
+                            <input 
+                              type="number" 
+                              value={formData.priceExclusive}
+                              onChange={(e) => setFormData({ ...formData, priceExclusive: Number(e.target.value) })}
+                              placeholder="9999"
+                              className="w-full bg-zinc-950 border border-zinc-800 focus:border-yellow-400 rounded-xl pl-8 pr-3 py-2 text-sm focus:outline-none font-mono text-yellow-200 font-bold"
+                              required
+                            />
+                          </div>
+                          <p className="text-[10px] text-zinc-500 font-sans">Full exclusive rights</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Section 6: Play Count Tracking */}
+                    <div className="bg-zinc-950/70 border border-zinc-800/90 rounded-2xl p-5 sm:p-6 space-y-3 shadow-sm">
+                      <div className="border-b border-zinc-850 pb-2.5 flex items-center justify-between">
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+                          6. Play Count Analytics
+                        </span>
+                        <span className="text-[10px] font-sans text-zinc-500">Live Play Counter</span>
                       </div>
 
-                      {/* WAV License Price */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-amber-400 uppercase tracking-widest mb-1 leading-none">WAV License (₹)</label>
-                        <input 
-                          type="number" 
-                          value={formData.pricePremium}
-                          onChange={(e) => setFormData({ ...formData, pricePremium: Number(e.target.value) })}
-                          placeholder="1999"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-400 font-mono text-zinc-100"
-                          required
-                        />
-                      </div>
-
-                      {/* WAV + Stems License Price */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-purple-400 uppercase tracking-widest mb-1 leading-none">WAV + Stems License (₹)</label>
-                        <input 
-                          type="number" 
-                          value={formData.priceUnlimited}
-                          onChange={(e) => setFormData({ ...formData, priceUnlimited: Number(e.target.value) })}
-                          placeholder="3999"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 font-mono text-zinc-100"
-                          required
-                        />
-                      </div>
-
-                      {/* Exclusive License Price */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-yellow-400 uppercase tracking-widest mb-1 leading-none">Exclusive License (₹)</label>
-                        <input 
-                          type="number" 
-                          value={formData.priceExclusive}
-                          onChange={(e) => setFormData({ ...formData, priceExclusive: Number(e.target.value) })}
-                          placeholder="9999"
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-yellow-400 font-mono text-yellow-200 font-bold"
-                          required
-                        />
-                      </div>
-
-                      {/* Play Count Field */}
-                      <div>
-                        <label className="block text-[9px] font-mono text-amber-400 uppercase tracking-widest mb-1 leading-none">Play Count (Plays)</label>
+                      <div className="max-w-xs">
+                        <label className="block text-xs font-sans font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                          Play Count (Total Plays)
+                        </label>
                         <input 
                           type="number" 
                           value={formData.plays}
                           onChange={(e) => setFormData({ ...formData, plays: Number(e.target.value) })}
-                          className="w-full bg-zinc-950 border border-zinc-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-400 font-mono text-amber-400 font-bold"
+                          className="w-full bg-zinc-900 border border-zinc-800 focus:border-amber-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none font-mono text-amber-400 font-bold"
                         />
+                        <p className="text-[10px] text-zinc-500 font-sans mt-1">
+                          Controls the Top 1 to Top 8 ranking on the home page.
+                        </p>
                       </div>
                     </div>
+
                   </div>
 
-                  <div className="px-6 py-4 border-t border-zinc-850 bg-zinc-950/20 flex items-center justify-end gap-3">
+                  {/* Fixed / Sticky Form Footer */}
+                  <div className="px-6 sm:px-8 py-4 border-t border-zinc-800 bg-zinc-950/90 backdrop-blur-md flex items-center justify-between gap-3 flex-shrink-0">
                     <button
                       type="button"
                       onClick={() => setActiveFormTab('list')}
-                      className="px-4 py-2 rounded-xl text-xs font-mono text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+                      className="px-4 py-2.5 rounded-xl text-xs font-sans font-bold text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
                     >
-                      Discard
+                      Discard / Back to List
                     </button>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-sans font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 shadow-lg shadow-purple-900/20"
+                      className="px-6 py-2.5 rounded-xl bg-amber-400 hover:bg-yellow-300 text-black font-sans font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95"
                     >
                       {isSubmitting ? (
-                        <span className="w-4 h-4 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
+                        <>
+                          <span className="w-4 h-4 border-2 border-t-transparent border-black rounded-full animate-spin"></span>
+                          <span>Saving Instrumental...</span>
+                        </>
                       ) : (
                         <>
-                          <Save className="w-3.5 h-3.5" />
-                          <span>Save Beat Parameter</span>
+                          <Save className="w-4 h-4" />
+                          <span>{activeFormTab === 'edit' ? 'Update Beat Parameters' : 'Save Beat to Catalog'}</span>
                         </>
                       )}
                     </button>
